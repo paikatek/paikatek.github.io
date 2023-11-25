@@ -54,7 +54,7 @@ import {
 	PropertyBinding,
 	QuaternionKeyframeTrack,
 	RGBAFormat,
-	//RGBFormat,
+	RGBFormat,
 	RepeatWrapping,
 	Skeleton,
 	SkinnedMesh,
