@@ -57,7 +57,7 @@ class Appxr{
         light.shadow.mapSize.height=4096;
         light.shadow.camera.near = 0.5; // default
         light.shadow.camera.far = 500; // default
-        light.shadow.bias = -0.00001;
+        light.shadow.bias = -0.00007;
         this.scene.add(light);    
     }
 
