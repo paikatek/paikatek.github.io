@@ -9,7 +9,6 @@ import {
 	LinearEncoding,
 	LinearFilter,
 	NearestFilter,
-	RGBEFormat,
 	RGBFormat,
 	UnsignedByteType
 } from "../three.module.js";
