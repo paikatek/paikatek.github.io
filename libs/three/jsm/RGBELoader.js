@@ -9,7 +9,6 @@ import {
 	LinearEncoding,
 	LinearFilter,
 	NearestFilter,
-	RGBEEncoding,
 	RGBEFormat,
 	RGBFormat,
 	UnsignedByteType
