@@ -4,7 +4,7 @@ import { GLTFLoader } from './libs/three/jsm/GLTFLoader.js';
 import { RGBELoader } from './libs/three/jsm/RGBELoader.js';
 import { OrbitControls } from './libs/three/jsm/OrbitControls.js';
 import { LoadingBar } from './libs/LoadingBar.js';
-//import { LightShadow } from './libs/lights/LightShadow.js';
+import { InstancedMesh } from './libs/objects/InstancedMesh.js';
 
 let loadedGltfRes= false;
 let childrenNames = new Array;
@@ -27,7 +27,7 @@ class Appxr{
 			
         this.rendererSetup(container);
 
-		this.setEnvironment('./assets/field_sky.hdr');
+		//this.setEnvironment('./assets/field_sky.hdr');
 		
         this.loadingBar = new LoadingBar();
          
@@ -42,12 +42,13 @@ class Appxr{
     
     worldConstruct(){
         this.camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.01, 900 );
-		this.camera.position.set( 0, 4, 14 );
+		this.camera.position.set( 0, 2, 10 );
+        
         
 		this.scene = new THREE.Scene();
-        this.scene.background = new THREE.Color( 0xaaaaaa );
+        this.scene.background = new THREE.Color( 0x11aaFF );
 
-        const ambient = new THREE.HemisphereLight(0xFFFFFF,0x10FF10, 0.5);
+        const ambient = new THREE.HemisphereLight(0x90CCEE,0x222222, 3);
 		this.scene.add(ambient);
         
         const light = new THREE.DirectionalLight( 0xFFFFFF, 5);
@@ -58,12 +59,13 @@ class Appxr{
         light.shadow.camera.near = 0.5; // default
         light.shadow.camera.far = 500; // default
         light.shadow.bias = -0.00007;
-        this.scene.add(light);    
+        this.scene.add(light);  
+
     }
 
     rendererSetup(container){
         this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true } );
-		this.renderer.setPixelRatio( window.devicePixelRatio );
+		this.renderer.setPixelRatio( window.devicePixelRatio*2 );
 		this.renderer.setSize( window.innerWidth, window.innerHeight );
         this.renderer.outputEncoding = THREE.sRGBEncoding;
         this.renderer.physicallyCorrectLights = true;
@@ -118,7 +120,7 @@ class Appxr{
                         let nameVal = new Int16Array;
                         nameVal=parseInt(nameInd, 10);
                         childrenNames.push([nameVal,child.name,i]);
-
+                        child.position.y-=0.6;
                         i++;
                     }   
                 });
@@ -126,7 +128,7 @@ class Appxr{
                     return a[0] - b[0];
                 });
 
-                //for(let j=0;j<childrenNames.length;j++){console.log(childrenNames[j][0]," > ",childrenNames[j][1]," > ",childrenNames[j][2]);}
+                for(let j=0;j<childrenNames.length;j++){console.log(childrenNames[j][0]," > ",childrenNames[j][1]," > ",childrenNames[j][2]);}
 
                 loadedGltfRes = true;
 
@@ -214,12 +216,13 @@ class Appxr{
 
         letExplode();
 
+         
 
         function toCopy(index){
             let clone = new THREE.Mesh;
             clone.copy(epicenterHand.children[index],true);
             epicenterHand.add(clone);
-            childrenNames.push([childrenNames.length,"77_elew",childrenNames.length]);
+            childrenNames.push([72,"72_elew",childrenNames.length]);
             cloneHand = epicenterHand.children[epicenterHand.children.length-1];
         }
 
@@ -231,7 +234,8 @@ class Appxr{
         }
 
 
-        function elewSidesCopies(flip){    
+        function elewSidesCopies(flip){
+            let index = 76;    
             if(!flip){
                 rotation = 0;
                 transZ = 0;
@@ -239,15 +243,15 @@ class Appxr{
             else {
                 rotation = Math.PI;
                 transZ = -2.984;
-                toCopy(76);
+                toCopy(index);
                 leftRightTrans(rotation,transZ,0);
             }
             for(let j=1;j<18;j++){
-                toCopy(76);
+                toCopy(index);
                 leftRightTrans(rotation,transZ,j);
             }
             for(let j=18;j<24;j++){
-                toCopy(76);
+                toCopy(index);
                 leftRightTrans(rotation,transZ,j);
                 cloneHand.position.x+=0.98;
                 cloneHand.scale.set(0.51,0.1,0.005);
@@ -255,10 +259,10 @@ class Appxr{
                 clone2.copy(cloneHand,true);
                 clone2.position.x=-0.98;
                 epicenterHand.add(clone2);
-                childrenNames.push([childrenNames.length,"77_elew",childrenNames.length]);
+                childrenNames.push([72,"72_elew",childrenNames.length]);
             }
             for(let j=24;j<29;j++){
-                toCopy(76);
+                toCopy(index);
                 leftRightTrans(rotation,transZ,j);
             }}
     
@@ -274,32 +278,33 @@ class Appxr{
         function elewFrBkCopies(flip){    
             rotation = -Math.PI/2;
             transX = -1.494;
+            let index = 76;
             if(flip==false){
                 rotation = Math.PI/2;
                 transX = 1.494;
                 for(let j=0;j<27;j++){
-                toCopy(76);
+                toCopy(index);
                 backFrontTrans(rotation,transX,-2.496 , j);
                 cloneHand.scale.set(0.5,0.1,0.005);
                 let clone2 = new THREE.Mesh;
                 clone2.copy(cloneHand,true);
                 clone2.position.z+=2;
                 epicenterHand.add(clone2);
-                childrenNames.push([childrenNames.length,"77_elew",childrenNames.length]);
+                childrenNames.push([72,"72_elew",childrenNames.length]);
             }}
             else{
                 for(let j=0;j<27;j++){
-                    toCopy(76);
+                    toCopy(index);
                     backFrontTrans(rotation,transX,-1.491, j);
                     cloneHand.scale.set(1.495,0.1,0.005);
             }}
             for(let j=27;j<29;j++){
-                toCopy(76);
+                toCopy(index);
                 backFrontTrans(rotation,transX,-1.491, j);
                 cloneHand.scale.set(1.495,0.1,0.005);
             }
             for(let j=29;j<41;j++){
-                    toCopy(76);
+                    toCopy(index);
                     backFrontTrans(rotation,transX,-1.491, j);
                     cloneHand.scale.set(1.33-(-0.125*(30-j)),0.1,0.005);
                 }
@@ -323,7 +328,11 @@ class Appxr{
                 epicenterHand.children[i].getWorldPosition ( vecChNew );
                 childrenExplodePos[i]=vecChNew;
                 explodeImplodeOrigDist[i] = vecChNew.distanceTo( vecCh );}
-        }}
+        }
+        childrenNames.sort(function(a,b){
+            return a[0] - b[0];});
+        for(let j=0;j<childrenNames.length;j++){console.log(childrenNames[j][0]," > ",childrenNames[j][1]," > ",childrenNames[j][2]);}
+    }
 
 
 
@@ -333,7 +342,9 @@ class Appxr{
         deltaTime=clock.elapsedTime-deltaTime; 
         //console.log(clock.elapsedTime);
         for(let i=0;i<childrenNames.length;i++){
-            if (i>75){interval=0.12; startingTime=6; };
+            if (i>70){interval=0.12; startingTime=5.5; };
+            if (i>249){interval=0.18; startingTime=-8.5; };
+            if (i>252){interval=0.18; startingTime=-7.5; };
             let order = childrenNames[i][2];
             if(clock.elapsedTime>((i*interval)+startingTime)){  
             let vecCh= new THREE.Vector3;
@@ -353,12 +364,59 @@ class Appxr{
 
 
     initScene(){
+        const amount = parseInt( window.location.search.slice( 1 ) ) || 10;
+			const count = Math.pow( amount, 3 );
+			const dummy = new THREE.Object3D();
         if(loadedGltfRes==true && showChildOrigPosOnce==true){
             this.setupVR();
             this.epicenterCreate();
             this.explodeGLTF();
             clock.startTime;
-            this.scene.children[3].visible=false; }}
+            this.scene.children[3].visible=false;
+            
+        const groundGeo = new THREE.PlaneBufferGeometry(200,200,1,1);
+        const groundMat = new THREE.MeshStandardMaterial({color:0x11FF22});
+        const ground = new THREE.Mesh(groundGeo,groundMat);
+        ground.rotateX  (-Math.PI/2);
+        ground.receiveShadow = true;
+        this.scene.add(ground);
+        
+
+
+        
+        
+        
+        //instancing
+            
+            /*let mesh;
+            let material = new THREE.MeshStandardMaterial( { color: (this.random(1,255),this.random(1,255),this.random(1,255)), opacity: this.random(0.1,0.8), transparent: true });
+
+            let geometry = new THREE.SphereBufferGeometry(0.05,3,3);
+            mesh = new THREE.InstancedMesh( geometry, material, 20000 );
+			mesh.instanceMatrix.setUsage( THREE.DynamicDrawUsage ); 
+			this.scene.add( mesh );
+            if ( mesh ) {
+                for ( let i = 0; i < 20000; i ++ ) {
+                let randX = this.random( -10, 10 );
+                let randY = this.random( -10, 10 );
+                let randZ = this.random( -10, 10 );
+                dummy.position.set(  randX, randY, randZ );
+                dummy.updateMatrix();
+                mesh.setMatrixAt( i, dummy.matrix );
+                let randColor=new THREE.Color(this.random(1,255),this.random(1,255),this.random(1,255));
+                //mesh.setColorAt(i, randColor);
+                mesh.instanceMatrix.needsUpdate = true;
+                //mesh.material=new THREE.MeshStandardMaterial({color:randColor});
+                //mesh.instanceColor.needsUpdate = true;
+            }
+                //mesh.computeBoundingSphere();
+            }*/
+        }}
+            
+        
+
+            
+            
 
     updateState(){
         let child;
