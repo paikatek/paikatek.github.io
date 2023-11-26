@@ -28272,6 +28272,18 @@ InstancedMesh.prototype = Object.assign( Object.create( Mesh.prototype ), {
 
 	},
 
+	setColorAt: function( index, color ) {
+
+		if ( this.instanceColor === null ) {
+
+			this.instanceColor = new InstancedBufferAttribute( new Float32Array( this.instanceMatrix.count * 3 ), 3 );
+
+		}
+
+		color.toArray( this.instanceColor.array, index * 3 );
+
+	},
+
 	setMatrixAt: function ( index, matrix ) {
 
 		matrix.toArray( this.instanceMatrix.array, index * 16 );
@@ -42167,6 +42179,7 @@ ObjectLoader.prototype = Object.assign( Object.create( Loader.prototype ), {
 
 				object = new InstancedMesh( geometry, material, count );
 				object.instanceMatrix = new BufferAttribute( new Float32Array( instanceMatrix.array ), 16 );
+				if ( instanceColor !== undefined ) object.instanceColor = new InstancedBufferAttribute( new Float32Array( instanceColor.array ), instanceColor.itemSize );
 
 				break;
 
