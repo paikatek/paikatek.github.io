@@ -43,7 +43,7 @@ class Appxr{
     worldConstruct(){
         this.camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.01, 900 );
 		this.camera.position.set( 0, 2, 10 );
-        
+
         
 		this.scene = new THREE.Scene();
         this.scene.background = new THREE.Color( 0x11aaFF );
@@ -54,18 +54,18 @@ class Appxr{
         const light = new THREE.DirectionalLight( 0xFFFFFF, 5);
         light.position.set( 40, 90, 60);
         light.castShadow = true;
-        light.shadow.mapSize.width=4096;
-        light.shadow.mapSize.height=4096;
+        light.shadow.mapSize.width=512;
+        light.shadow.mapSize.height=512;
         light.shadow.camera.near = 0.5; // default
         light.shadow.camera.far = 500; // default
-        light.shadow.bias = -0.00007;
+        light.shadow.bias = -0.0001;
         this.scene.add(light);  
+
 
     }
 
     rendererSetup(container){
         this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true } );
-		this.renderer.setPixelRatio( window.devicePixelRatio*2 );
 		this.renderer.setSize( window.innerWidth, window.innerHeight );
         this.renderer.outputEncoding = THREE.sRGBEncoding;
         this.renderer.physicallyCorrectLights = true;
