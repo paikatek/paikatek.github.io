@@ -5,8 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>patricktools</title>
-		<meta name="description" content="Oficial Homepage">
-
+		<meta name="description" content="Oficial Homepage">
 		<style>
 			body { 
 				margin: 0;
@@ -26,10 +25,39 @@
 
 
 		</style>
-		<script type="module" crossorigin src="./assets/index-VZsLPgfy.js"></script>
-		<link rel="stylesheet" crossorigin href="./assets/index-3U-Idl-p.css">
+		<script type="module" crossorigin src="/assets/index-Zu_yR5dt.js"></script>
+		<link rel="stylesheet" crossorigin href="/assets/index-ewR5MaVc.css">
 	</head>
-	<body>
+	<body>
+
+		<script type="x-shader/x-vertex" id="vertexshader">
+
+			varying vec2 vUv;
+	  
+			void main() {
+	  
+			  vUv = uv;
+	  
+			  gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+	  
+			}
+	  
+		  </script>
+	  
+		  <script type="x-shader/x-fragment" id="fragmentshader">
+	  
+			uniform sampler2D baseTexture;
+			uniform sampler2D bloomTexture;
+	  
+			varying vec2 vUv;
+	  
+			void main() {
+	  
+			  gl_FragColor = ( texture2D( baseTexture, vUv ) + vec4( 1.0 ) * texture2D( bloomTexture, vUv ) );
+	  
+			}
+	  
+		  </script>
 
 		 <header>
 			<div class="container container-flex text-light">
@@ -52,67 +80,49 @@
 			<main>
 				<div id="aboutme" class="article-container">
 				<article class="article">
-					<img src="./assets/me-7cjr3u5p.JPG" alt="fotografia autora i właściciela strony" class="image">
+					<img src="/assets/me-7cjr3u5p.JPG" alt="fotografia autora i właściciela strony" class="image">
 					<!--<p class="article-date">2 days ago</p> -->               
 					<h2>#O mnie</h2>
 					<p class="article-content">
-						Nazywam się Patryk Jenczyk. Od najmłodszych lat interesowałem się budową i działaniem 
-						urządzeń elektrycznych i elektronicznych. Gdy nastąpiła era komputerów (a dla mnie nastała 
-						na początku lat 90 wraz z otrzymaniem swojego pierwszego komputera) zaczęła się dla mnie wielka 
-						przygoda z informatyką. Projektowanie, programowanie w wielu językach, tworzenie grafiki rastrowej, 
-						wektorowej i obiektów 3D to umiejętności, które zgłębiam od lat. Do tego wraz z wiekiem ujawniła się
-						moja wielka miłość do gadżetów elektronicznych. Dla mnie szeroko rozumiana elektronika to wrota do 
-						kreowania świata i tworzenia wspaniałych rzeczy. Napotykane w trakcie przeszkody to nie problemy lecz 
-						wyzwania. Zapraszam Cię do swojego świata, w którym prym wiedzie nowoczesność i nowatorskie rozwiązania.
+						<div class="elementText">Nazywam się Patryk Jenczyk. Od najmłodszych lat interesowałem się budową i działaniem urządzeń elektrycznych i elektronicznych. Gdy nastąpiła era komputerów (a dla mnie nastała na początku lat 90 wraz z otrzymaniem swojego pierwszego komputera) zaczęła się dla mnie wielka przygoda z informatyką. Projektowanie, programowanie w wielu językach, tworzenie grafiki rastrowej, wektorowej i obiektów 3D to umiejętności, które zgłębiam od lat. Do tego wraz z wiekiem ujawniła się moja wielka miłość do gadżetów elektronicznych. Dla mnie szeroko rozumiana elektronika to wrota do kreowania świata i tworzenia wspaniałych rzeczy. Napotykane w trakcie przeszkody to nie problemy lecz wyzwania. Zapraszam Cię do swojego świata, w którym prym wiedzie nowoczesność i nowatorskie rozwiązania.</div>
 					</p>
 				</article></div>
 				<div id="developing" class="article-container">
 					<article  class="article">
-					<img src="./assets/website-647013_640-7WhPxkz5.jpg" alt="obraz przedstawiający fragment kodu HTML" class="image">
+					<img src="/assets/website-647013_640-7WhPxkz5.jpg" alt="obraz przedstawiający fragment kodu HTML" class="image">
 					<!--<p class="article-date">2 days ago</p> -->               
 					<h2>#Tworzenie stron</h2>
 					<p class="article-content">
-						Tworzę od podstaw witryny internetowe, począwszy od wykupienia domeny poprzez wyszukanie korzystnej opcji hostingowej.
-						Następnie w bliskiej kooperacji z klientem projektuję sferę wizualną i funkcjonalną witryny. W pracy wykorzystuję nowoczesne
-						rozwiązania. Cenię sobie responsyność i dynamikę na stronie. Zależy mi na tym by klient otrzymał produkt nie tylko funkcjonalny
-						ale też na tyle atrakcyjny, by odwiadzający ją użytkownik dobrze zapamiętał jej profil, a tym samym Ciebie i Twoją organizację.
-						Jeśli posiadasz już stronę to na pewno można ją unowocześnić, uatrakcyjnić i skuteczniej dotrzeć do świadomości odbiorcy.
-						Mówi się, że "jak Cię widzą, tak Cię piszą". Nic w tym dziwnego. Ocena wyglądu trwale i mocno determinuje odbiór kontentu witryny.
+						<div class="elementText">Tworzę od podstaw witryny internetowe, począwszy od wykupienia domeny poprzez wyszukanie korzystnej opcji hostingowej. Następnie w bliskiej kooperacji z klientem projektuję sferę wizualną i funkcjonalną witryny. W pracy wykorzystuję nowoczesne rozwiązania. Cenię sobie responsyność i dynamikę na stronie. Zależy mi na tym by klient otrzymał produkt nie tylko funkcjonalny ale też na tyle atrakcyjny, by odwiadzający ją użytkownik dobrze zapamiętał jej profil, a tym samym Ciebie i Twoją firmę. Jeśli posiadasz już stronę to na pewno można ją unowocześnić, uatrakcyjnić i skuteczniej dotrzeć do świadomości odbiorcy. Mówi się, że "jak Cię widzą, tak Cię piszą". Nic w tym dziwnego. Ocena wyglądu trwale i mocno determinuje odbiór kontentu witryny.</div>
 					</p>
 				</article></div>
 				<div id="visualization" class="article-container">
 				<article class="article">
-					<img src="./assets/woman-1418848_640-CTHRJWRX.jpg" alt="obraz przedstawiający zafacynowaną realizmem VR kobietę" class="image">
+					<img src="/assets/woman-1418848_640-CTHRJWRX.jpg" alt="obraz przedstawiający zafacynowaną realizmem VR kobietę" class="image">
 					<!--<p class="article-date">2 days ago</p> -->               
 					<h2>#Wizualizacje</h2>
 					<p class="article-content">
-						Oferujesz produkty, ale szukasz sposobu na skuteczny sposób jego sprzedania. Posiadanie na swojej stronie interaktywnej
-						wizualizacji posiadanego asortymentu może skutecznie zwiększyć Twoje obroty. Udostępnianie wizualizacji w postaci 
-						tzw. Immersive Content, zwielokrotni pozytywne wrażenia odwiedzających i z pewnością zainspiruje ich do pełnego
-						odkrywania wizualizowanego produktu.
+						<div class="elementText">Oferujesz produkty, ale szukasz sposobu na skuteczny sposób jego sprzedania. Posiadanie na swojej stronie interaktywnej wizualizacji posiadanego asortymentu może skutecznie zwiększyć Twoje obroty. Udostępnianie wizualizacji w postaci tzw. Immersive Content, zwielokrotni pozytywne wrażenia odwiedzających i z pewnością zainspiruje ich do pełnego odkrywania wizualizowanego produktu.</div>
 					</p>
 				</article></div>
 				<div id="smarthome" class="article-container">
 				<article class="article">
-					<img src="./assets/smart-home-3574545_640-5GSybb2i.jpg" alt="obraz przedstawiający sterowanie systemami smart w domu" class="image">
+					<img src="/assets/smart-home-3574545_640-5GSybb2i.jpg" alt="obraz przedstawiający sterowanie systemami smart w domu" class="image">
 					<!--<p class="article-date">2 days ago</p> -->               
 					<h2>#Smart Dom</h2>
 					<p class="article-content">
-						Jesteś właścicielem nieruchomości? Zastanawiałeś się kiedyś nad wprowadzeniem rozwiązań inteligentnego domu u siebie?
-						Obawiasz się dostępności cenowej lub barier technologicznych? Nie musisz. Możesz mieć rozwiązania smart w przystępnej 
-						cenie i bez względu na stan nieruchomości. Możesz zautomatyzować oświetlenie, ogrzewanie, podlewanie, monitoring, 
-						sterowanie dostępem i wiele innych systemów zgodnie z zaprojektowanymi scenariuszami.
+						<div class="elementText">Jesteś właścicielem nieruchomości? Zastanawiałeś się kiedyś nad wprowadzeniem rozwiązań inteligentnego domu u siebie? Obawiasz się dostępności cenowej lub barier technologicznych? Nie musisz. Możesz mieć rozwiązania smart w przystępnej cenie i bez względu na stan nieruchomości. Możesz zautomatyzować oświetlenie, ogrzewanie, podlewanie, monitoring, sterowanie dostępem i wiele innych systemów zgodnie z zaprojektowanymi scenariuszami.</div>
 					</p>
 				</article></div>
 				<div id="contact" class="article-container">
 				<article  class="article">
-					<img src="./assets/contact-us-2993000_640-LgpACeAT.jpg" alt="obraz przedstawiający wybierającą formę kontaktu" class="image">
+					<img src="/assets/contact-us-2993000_640-LgpACeAT.jpg" alt="obraz przedstawiający wybierającą formę kontaktu" class="image">
 					<!--<p class="article-date">2 days ago</p> -->               
 					<h2>#Kontakt</h2>
 					<p class="article-content">
-						Patryk Jenczyk
-						<p class="contact">E-mail: <a href="mailto:patryk.jenczyk@gmail.com">patryk.jenczyk@gmail.com</a></p>
-						<p class="contact">Tel: <a href="tel:+48668101830">+48 668 101 830</a></p>
+						<div class="elementText">Patryk Jenczyk<p class="contact">
+E-mail: <a href="mailto:patryk.jenczyk@gmail.com">patryk.jenczyk@gmail.com</a></p><p class="contact">
+Tel: <a href="tel:+48668101830">+48 668 101 830</a></p></div>
 					</p>
 				</article></div>
 			</main>
@@ -139,6 +149,6 @@
 				</div>
 			</div>
 		</footer>
-		<id id="webGL"></id>
+		<div id="webGL"></div>
 	</body>
 </html>
