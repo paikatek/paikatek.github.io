@@ -7,6 +7,15 @@
 		<title>patricktoys</title>
 		<meta name="description" content="Oficial Homepage">
 
+		<!--<scipt type="text/javascript">
+				window.onload = function(){
+			
+				var scriptElement=document.createElement('script');
+				scriptElement.type = 'module';
+				scriptElement.src = "./main.js";
+				document.head.appendChild(scriptElement);}
+		
+			</scipt>-->
 		<style>
 			body { 
 				margin: 0;
@@ -26,13 +35,49 @@
 
 
 		</style>
-		
+		<script type="module" crossorigin src="./assets/index-HeH2x0qX.js"></script>
 		<link rel="stylesheet" crossorigin href="./assets/index-0uIt56gA.css">
 	</head>
 	<body>
+		<!--<scipt type="text/javascript">
+				window.onload = function(){
+			
+				var scriptElement=document.createElement('script');
+				scriptElement.type = 'module';
+				scriptElement.src = "./main.js";
+				document.head.appendChild(scriptElement);}
+		
+			</scipt>-->
 
 
+		<script type="x-shader/x-vertex" id="vertexshader">
 
+			varying vec2 vUv;
+	  
+			void main() {
+	  
+			  vUv = uv;
+	  
+			  gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+	  
+			}
+	  
+		  </script>
+	  
+		  <script type="x-shader/x-fragment" id="fragmentshader">
+	  
+			uniform sampler2D baseTexture;
+			uniform sampler2D bloomTexture;
+	  
+			varying vec2 vUv;
+	  
+			void main() {
+	  
+			  gl_FragColor = ( texture2D( baseTexture, vUv ) + vec4( 1.0 ) * texture2D( bloomTexture, vUv ) );
+	  
+			}
+	  
+		  </script>
 
 		 <header>
 			<div class="container container-flex text-light">
@@ -59,7 +104,7 @@
 					<!--<p class="article-date">2 days ago</p> -->               
 					<h2>#O mnie</h2>
 					<p class="article-content">
-						<div class="elementText">Nazywam się Patryk Jenczyk. Od najmłodszych lat interesowałem się budową i działaniem urządzeń elektrycznych i elektronicznych. Gdy nastąpiła era komputerów (a dla mnie nastała na początku lat 90 wraz z otrzymaniem swojego pierwszego komputera) zaczęła się dla mnie wielka przygoda z informatyką. Projektowanie, programowanie w wielu językach, tworzenie grafiki rastrowej, wektorowej i obiektów 3D to umiejętności, które zgłębiam od lat. Do tego wraz z wiekiem ujawniła się moja wielka miłość do gadżetów elektronicznych. 
+						<div class="elementText">Nazywam się Patryk Jenczyk. Od najmłodszych lat interesowałem się budową i działaniem urządzeń elektrycznych i elektronicznych. Gdy nastąpiła era komputerów (a dla mnie nastała na początku lat 90 wraz z otrzymaniem swojego pierwszego komputera) zaczęła się dla mnie wielka przygoda z informatyką. Projektowanie, programowanie w wielu językach, tworzenie grafiki rastrowej, wektorowej i obiektów 3D to umiejętności, które zgłębiam od lat. Gadżety elektroniczne to niewątpliwie moja wielka pasja. 
 Dla mnie szeroko rozumiana elektronika to wrota do kreowania świata i tworzenia wspaniałych rzeczy. Napotykane w trakcie przeszkody to nie problemy lecz wyzwania. 
 Zapraszam Cię do swojego świata, w którym prym wiedzie nowoczesność i nowatorskie rozwiązania.</div>
 					</p>
@@ -136,35 +181,6 @@ Tel: <a href="tel:+48668101830">+48 668 101 830</a></p></div>
 				</div>
 			</div>
 		</footer>
-		<script type="module" crossorigin src="./assets/index-H1TagU24.js"></script>
-		<script type="x-shader/x-vertex" id="vertexshader">
-
-			varying vec2 vUv;
-	  
-			void main() {
-	  
-			  vUv = uv;
-	  
-			  gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
-	  
-			}
-	  
-		  </script>
-	  
-		  <script type="x-shader/x-fragment" id="fragmentshader">
-	  
-			uniform sampler2D baseTexture;
-			uniform sampler2D bloomTexture;
-	  
-			varying vec2 vUv;
-	  
-			void main() {
-	  
-			  gl_FragColor = ( texture2D( baseTexture, vUv ) + vec4( 1.0 ) * texture2D( bloomTexture, vUv ) );
-	  
-			}
-	  
-		  </script>
 		<div id="webGL"></div>
 	</body>
 </html>
